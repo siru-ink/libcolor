@@ -21,3 +21,24 @@ class SRGBColor:
 
         # Differing colors otherwise
         return False
+
+    @classmethod
+    def from_hex_str(cls, hexcode: str) -> SRGBColor:
+        # Remove a leading # character
+        hexcode = hexcode.lstrip("#")
+
+        # Guarantee that this is a well formed hexcode
+        assert 6 == len(hexcode) or 3 == len(hexcode)
+
+        # Try standard 6 character path or fallback to three character path if needed
+        if 6 == len(hexcode):
+            red: int = int(hexcode[0:2], 16)
+            green: int = int(hexcode[2:4], 16)
+            blue: int = int(hexcode[4:6], 16)
+        else:
+            red: int = int(hexcode[0:1], 16)
+            green: int = int(hexcode[1:2], 16)
+            blue: int = int(hexcode[2:3], 16)
+
+        # Create a new color object
+        return SRGBColor(red, green, blue)
