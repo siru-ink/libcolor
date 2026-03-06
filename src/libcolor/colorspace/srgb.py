@@ -9,3 +9,15 @@ class SRGBColor:
         self.red = red
         self.green = green
         self.blue = blue
+
+    def __eq__(self, other) -> bool:
+        # Smae colors if all color chanels match
+        if (
+            self.red == other.red
+            and self.green == other.green
+            and self.blue == other.blue
+        ):
+            return True
+
+        # Differing colors otherwise
+        return False
