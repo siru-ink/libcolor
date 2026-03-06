@@ -1,0 +1,14 @@
+[project]
+name = "libcolor"
+version = "0.1.0"
+description = "Library functions to deal with different colorspaces and respective conversions, as well as a few utilities."
+readme = "README.md"
+authors = [
+    { name = "siru", email = "email@siru.ink" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
