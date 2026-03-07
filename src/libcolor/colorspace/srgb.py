@@ -113,3 +113,16 @@ class StandardRGBColor:
 
         # Create a new color object
         return StandardRGBColor(red, green, blue)
+
+
+class StandardRGBLinearizedColor:
+    def __init__(self, red: float, green: float, blue: float) -> None:
+        # Check validity of input paramters
+        assert type(red) is float and red >= 0.0 and red <= 1.0
+        assert type(green) is float and green >= 0.0 and green <= 1.0
+        assert type(blue) is float and blue >= 0.0 and blue <= 1.0
+
+        # Set color variables
+        self.red: float = red
+        self.green: float = green
+        self.blue: float = blue
