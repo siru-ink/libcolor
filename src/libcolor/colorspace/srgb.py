@@ -127,6 +127,21 @@ class StandardRGBLinearizedColor:
         self.green: float = green
         self.blue: float = blue
 
+    def __eq__(self, other) -> bool:
+        # Guarantee that this equality check is against a class/subclass of the same type
+        assert isinstance(other, StandardRGBLinearizedColor)
+
+        # Same colors if all color chanels match
+        if (
+            self.red == other.red
+            and self.green == other.green
+            and self.blue == other.blue
+        ):
+            return True
+
+        # Differing colors otherwise
+        return False
+
     @classmethod
     def from_standard_rgb_color(cls, rgb_color: StandardRGBColor):
         def _linearize(color_value: float) -> float:
