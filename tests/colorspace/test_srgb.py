@@ -3,7 +3,7 @@ import pytest
 from libcolor.colorspace import srgb
 
 
-class TestSRGBColor:
+class TestStandardRGBColor:
     @pytest.fixture
     def obj1(self) -> srgb.StandardRGBColor:
         return srgb.StandardRGBColor(0, 0, 0)  # black
