@@ -1,4 +1,4 @@
-class SRGBColor:
+class StandardRGBColor:
     def __init__(self, red: int, green: int, blue: int) -> None:
         # Check valid input parameters
         assert type(red) is int and red <= 255 and red >= 0
@@ -23,7 +23,7 @@ class SRGBColor:
         return False
 
     @classmethod
-    def from_hex_str(cls, hexcode: str) -> SRGBColor:
+    def from_hex_str(cls, hexcode: str) -> StandardRGBColor:
         # Remove a leading # character
         hexcode = hexcode.lstrip("#")
 
@@ -41,4 +41,4 @@ class SRGBColor:
             blue: int = int(hexcode[2:3], 16)
 
         # Create a new color object
-        return SRGBColor(red, green, blue)
+        return StandardRGBColor(red, green, blue)
