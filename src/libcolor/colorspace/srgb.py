@@ -11,7 +11,10 @@ class StandardRGBColor:
         self.blue = blue
 
     def __eq__(self, other) -> bool:
-        # Smae colors if all color chanels match
+        # Guarantee that this equality check is against a class/subclass of the same type
+        assert isinstance(other, StandardRGBColor)
+
+        # Same colors if all color chanels match
         if (
             self.red == other.red
             and self.green == other.green
