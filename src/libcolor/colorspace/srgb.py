@@ -25,6 +25,74 @@ class StandardRGBColor:
         # Differing colors otherwise
         return False
 
+    def __lt__(self, other) -> bool:
+        # Guarantee that this less-than check is against a class/subclass of the same type
+        assert isinstance(other, StandardRGBColor)
+
+        # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
+        # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
+        if self.red >= other.red:
+            return False
+
+        if self.green >= other.green:
+            return False
+
+        if self.blue >= other.blue:
+            return False
+
+        return True
+
+    def __le__(self, other) -> bool:
+        # Guarantee that this less-than-or-equal check is against a class/subclass of the same type
+        assert isinstance(other, StandardRGBColor)
+
+        # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
+        # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
+        if self.red > other.red:
+            return False
+
+        if self.green > other.green:
+            return False
+
+        if self.blue > other.blue:
+            return False
+
+        return True
+
+    def __gt__(self, other) -> bool:
+        # Guarantee that this less-than-or-equal check is against a class/subclass of the same type
+        assert isinstance(other, StandardRGBColor)
+
+        # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
+        # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
+        if self.red <= other.red:
+            return False
+
+        if self.green <= other.green:
+            return False
+
+        if self.blue <= other.blue:
+            return False
+
+        return True
+
+    def __ge__(self, other) -> bool:
+        # Guarantee that this less-than-or-equal check is against a class/subclass of the same type
+        assert isinstance(other, StandardRGBColor)
+
+        # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
+        # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
+        if self.red < other.red:
+            return False
+
+        if self.green < other.green:
+            return False
+
+        if self.blue < other.blue:
+            return False
+
+        return True
+
     @classmethod
     def from_hex_str(cls, hexcode: str) -> StandardRGBColor:
         # Remove a leading # character
