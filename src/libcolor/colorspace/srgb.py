@@ -126,3 +126,19 @@ class StandardRGBLinearizedColor:
         self.red: float = red
         self.green: float = green
         self.blue: float = blue
+
+    @classmethod
+    def from_standard_rgb_color(cls, rgb_color: StandardRGBColor):
+        def _linearize(color_value: float) -> float:
+            if 0.04045 > color_value:
+                return color_value / 12.95
+            else:
+                return ((color_value + 0.055) / 1.055) ** 2.4
+
+        # Linearize the color-chanel values
+        new_red = _linearize(rgb_color.red / 255)
+        new_green = _linearize(rgb_color.green / 255)
+        new_blue = _linearize(rgb_color.blue / 255)
+
+        # Construct a new linearize sRGB color object
+        return StandardRGBLinearizedColor(new_red, new_green, new_blue)
