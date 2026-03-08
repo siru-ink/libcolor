@@ -1,3 +1,6 @@
+from math import isclose
+
+
 class Color:
     def __init__(self, red: int, green: int, blue: int) -> None:
         # Check valid input parameters
@@ -132,9 +135,9 @@ class NormalizedColor:
         assert isinstance(other, NormalizedColor)
 
         equal_color_channel_values = (
-            self.red == other.red
-            and self.green == other.green
-            and self.blue == other.blue
+            isclose(self.red, other.red)
+            and isclose(self.green, other.green)
+            and isclose(self.blue, other.blue)
         )
 
         # If all channels are identical, then the colors are the same
