@@ -1,4 +1,4 @@
-class StandardRGBColor:
+class Color:
     def __init__(self, red: int, green: int, blue: int) -> None:
         # Check valid input parameters
         assert type(red) is int and red <= 255 and red >= 0
@@ -12,7 +12,7 @@ class StandardRGBColor:
 
     def __eq__(self, other) -> bool:
         # Guarantee that this equality check is against a class/subclass of the same type
-        assert isinstance(other, StandardRGBColor)
+        assert isinstance(other, Color)
 
         # Same colors if all color chanels match
         if (
@@ -27,7 +27,7 @@ class StandardRGBColor:
 
     def __lt__(self, other) -> bool:
         # Guarantee that this less-than check is against a class/subclass of the same type
-        assert isinstance(other, StandardRGBColor)
+        assert isinstance(other, Color)
 
         # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
         # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
@@ -44,7 +44,7 @@ class StandardRGBColor:
 
     def __le__(self, other) -> bool:
         # Guarantee that this less-than-or-equal check is against a class/subclass of the same type
-        assert isinstance(other, StandardRGBColor)
+        assert isinstance(other, Color)
 
         # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
         # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
@@ -61,7 +61,7 @@ class StandardRGBColor:
 
     def __gt__(self, other) -> bool:
         # Guarantee that this less-than-or-equal check is against a class/subclass of the same type
-        assert isinstance(other, StandardRGBColor)
+        assert isinstance(other, Color)
 
         # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
         # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
@@ -78,7 +78,7 @@ class StandardRGBColor:
 
     def __ge__(self, other) -> bool:
         # Guarantee that this less-than-or-equal check is against a class/subclass of the same type
-        assert isinstance(other, StandardRGBColor)
+        assert isinstance(other, Color)
 
         # Treating colors as compound numbers (akin to the hex code representation), i.e. rgb(0,0,0)
         # is less than rgb(0,0,1), but rgb(1,0,0) is greater than rgb(0,0,1).
@@ -94,7 +94,7 @@ class StandardRGBColor:
         return True
 
     @classmethod
-    def from_hex_str(cls, hexcode: str) -> StandardRGBColor:
+    def from_hex_str(cls, hexcode: str) -> Color:
         # Remove a leading # character
         hexcode = hexcode.lstrip("#")
 
@@ -112,10 +112,10 @@ class StandardRGBColor:
             blue: int = int(hexcode[2:3], 16)
 
         # Create a new color object
-        return StandardRGBColor(red, green, blue)
+        return Color(red, green, blue)
 
 
-class StandardRGBLinearizedColor:
+class LinearizedColor:
     def __init__(self, red: float, green: float, blue: float) -> None:
         # Check validity of input paramters
         assert type(red) is float and red >= 0.0 and red <= 1.0
@@ -129,7 +129,7 @@ class StandardRGBLinearizedColor:
 
     def __eq__(self, other) -> bool:
         # Guarantee that this equality check is against a class/subclass of the same type
-        assert isinstance(other, StandardRGBLinearizedColor)
+        assert isinstance(other, LinearizedColor)
 
         # Same colors if all color chanels match
         if (
@@ -143,7 +143,7 @@ class StandardRGBLinearizedColor:
         return False
 
     @classmethod
-    def from_standard_rgb_color(cls, rgb_color: StandardRGBColor):
+    def from_standard_rgb_color(cls, rgb_color: Color):
         def _linearize(color_value: float) -> float:
             if 0.04045 > color_value:
                 return color_value / 12.95
@@ -156,4 +156,4 @@ class StandardRGBLinearizedColor:
         new_blue = _linearize(rgb_color.blue / 255)
 
         # Construct a new linearize sRGB color object
-        return StandardRGBLinearizedColor(new_red, new_green, new_blue)
+        return LinearizedColor(new_red, new_green, new_blue)
