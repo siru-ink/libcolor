@@ -3,81 +3,90 @@ import pytest
 from libcolor.colorspace import srgb
 
 
-class TestStandardRGBColor:
-    @pytest.fixture
-    def obj1(self) -> srgb.Color:
-        return srgb.Color(0, 0, 0)  # black
-
-    @pytest.fixture
-    def obj2(self) -> srgb.Color:
-        return srgb.Color(255, 255, 255)  # white
-
-    @pytest.fixture
-    def obj3(self) -> srgb.Color:
-        return srgb.Color(143, 188, 143)  # darkseagreen
-
-    def test_from_hex_str(self, obj1, obj2, obj3) -> None:
-        assert srgb.Color.from_hex_str("000") == obj1
-        assert srgb.Color.from_hex_str("FFFFFF") == obj2
-        assert srgb.Color.from_hex_str("#8FBC8F") == obj3
-
-    def test_lt(self, obj1, obj2) -> None:
-        assert obj1 < obj2
-        assert not obj2 < obj1
-        assert not obj1 < obj1
-
-    def test_le(self, obj1, obj2) -> None:
-        assert obj1 <= obj2
-        assert not obj2 <= obj1
-        assert obj1 <= obj1
-
-    def test_gt(self, obj1, obj2) -> None:
-        assert not obj1 > obj2
-        assert obj2 > obj1
-        assert not obj2 > obj2
-
-    def test_ge(self, obj1, obj2) -> None:
-        assert not obj1 >= obj2
-        assert obj2 >= obj1
-        assert obj2 >= obj2
+@pytest.fixture
+def color1() -> srgb.Color:
+    return srgb.Color(0, 0, 0)  # black
 
 
-class TestStandardRGBLiearizedColor:
-    @pytest.fixture
-    def obj1(self) -> srgb.LinearizedColor:
-        return srgb.LinearizedColor(0.0, 0.0, 0.0)
+@pytest.fixture
+def color2() -> srgb.Color:
+    return srgb.Color(255, 255, 255)  # white
 
-    @pytest.fixture
-    def obj2(self) -> srgb.LinearizedColor:
-        return srgb.LinearizedColor(1.0, 1.0, 1.0)
 
-    @pytest.fixture
-    def obj3(self) -> srgb.LinearizedColor:
-        return srgb.LinearizedColor(
-            0.27467731206038465, 0.5028864580325687, 0.27467731206038465
-        )
+@pytest.fixture
+def color3() -> srgb.Color:
+    return srgb.Color(143, 188, 143)  # darkseagreen
 
-    @pytest.fixture
-    def non_linearized_obj1(self) -> srgb.Color:
-        return srgb.Color(0, 0, 0)  # black
 
-    @pytest.fixture
-    def non_linearized_obj2(self) -> srgb.Color:
-        return srgb.Color(255, 255, 255)  # white
+@pytest.fixture
+def normalized_color1() -> srgb.NormalizedColor:
+    return srgb.NormalizedColor(0.0, 0.0, 0.0)
 
-    @pytest.fixture
-    def non_linearized_obj3(self) -> srgb.Color:
-        return srgb.Color(143, 188, 143)  # darkseagreen
 
+@pytest.fixture
+def normalized_color2() -> srgb.NormalizedColor:
+    return srgb.NormalizedColor(255.0, 255.0, 255.0)
+
+
+@pytest.fixture
+def normalized_color3() -> srgb.NormalizedColor:
+    return srgb.NormalizedColor(0.5607843137, 0.737254902, 0.5607843137)
+
+
+@pytest.fixture
+def linearized_color1() -> srgb.LinearizedColor:
+    return srgb.LinearizedColor(0.0, 0.0, 0.0)
+
+
+@pytest.fixture
+def linearized_color2() -> srgb.LinearizedColor:
+    return srgb.LinearizedColor(1.0, 1.0, 1.0)
+
+
+@pytest.fixture
+def linearized_color3() -> srgb.LinearizedColor:
+    return srgb.LinearizedColor(
+        0.27467731206038465, 0.5028864580325687, 0.27467731206038465
+    )
+
+
+class TestColor:
+    def test_from_hex_str(self, color1, color2, color3) -> None:
+        assert srgb.Color.from_hex_str("000") == color1
+        assert srgb.Color.from_hex_str("FFFFFF") == color2
+        assert srgb.Color.from_hex_str("#8FBC8F") == color3
+
+    def test_lt(self, color1, color2) -> None:
+        assert color1 < color2
+        assert not color2 < color1
+        assert not color1 < color1
+
+    def test_le(self, color1, color2) -> None:
+        assert color1 <= color2
+        assert not color2 <= color1
+        assert color1 <= color1
+
+    def test_gt(self, color1, color2) -> None:
+        assert not color1 > color2
+        assert color2 > color1
+        assert not color2 > color2
+
+    def test_ge(self, color1, color2) -> None:
+        assert not color1 >= color2
+        assert color2 >= color1
+        assert color2 >= color2
+
+
+class TestLinearizedColor:
     def test_from_standard_rgb_color(
         self,
-        obj1: srgb.LinearizedColor,
-        obj2: srgb.LinearizedColor,
-        obj3: srgb.LinearizedColor,
-        non_linearized_obj1: srgb.Color,
-        non_linearized_obj2: srgb.Color,
-        non_linearized_obj3: srgb.Color,
+        linearized_color1: srgb.LinearizedColor,
+        linearized_color2: srgb.LinearizedColor,
+        linearized_color3: srgb.LinearizedColor,
+        color1: srgb.Color,
+        color2: srgb.Color,
+        color3: srgb.Color,
     ) -> None:
-        assert obj1 == srgb.LinearizedColor.from_standard_rgb_color(non_linearized_obj1)
-        assert obj2 == srgb.LinearizedColor.from_standard_rgb_color(non_linearized_obj2)
-        assert obj3 == srgb.LinearizedColor.from_standard_rgb_color(non_linearized_obj3)
+        assert linearized_color1 == srgb.LinearizedColor.from_standard_rgb_color(color1)
+        assert linearized_color2 == srgb.LinearizedColor.from_standard_rgb_color(color2)
+        assert linearized_color3 == srgb.LinearizedColor.from_standard_rgb_color(color3)
