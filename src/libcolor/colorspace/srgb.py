@@ -140,6 +140,16 @@ class NormalizedColor:
         # If all channels are identical, then the colors are the same
         return equal_color_channel_values
 
+    @classmethod
+    def from_rgb_color(cls, color: Color) -> NormalizedColor:
+        # Convert from standard rgb to normalized colors
+        red: float = color.red / 255
+        green: float = color.green / 255
+        blue: float = color.blue / 255
+
+        # Construct a new NormalizedColor object
+        return NormalizedColor(red, green, blue)
+
 
 class LinearizedColor:
     def __init__(self, red: float, green: float, blue: float) -> None:
