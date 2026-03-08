@@ -115,6 +115,32 @@ class Color:
         return Color(red, green, blue)
 
 
+class NormalizedColor:
+    def __init__(self, red: float, green: float, blue: float) -> None:
+        # Check validity of input parameters
+        assert type(red) is float and red >= 0 and red <= 1
+        assert type(green) is float and green >= 0 and green <= 1
+        assert type(blue) is float and blue >= 0 and blue <= 1
+
+        # Set color variables
+        self.red: float = red
+        self.green: float = green
+        self.blue: float = blue
+
+    def __eq__(self, other) -> bool:
+        # Guarantee that this equality check is against a class/subclass of the same type
+        assert isinstance(other, NormalizedColor)
+
+        equal_color_channel_values = (
+            self.red == other.red
+            and self.green == other.green
+            and self.blue == other.blue
+        )
+
+        # If all channels are identical, then the colors are the same
+        return equal_color_channel_values
+
+
 class LinearizedColor:
     def __init__(self, red: float, green: float, blue: float) -> None:
         # Check validity of input paramters
