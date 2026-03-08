@@ -76,6 +76,11 @@ class TestColor:
         assert color2 >= color1
         assert color2 >= color2
 
+    def test_str(self, color1, color2, color3) -> None:
+        assert "rgb(0, 0, 0)" == str(color1)
+        assert "rgb(255, 255, 255)" == str(color2)
+        assert "rgb(143, 188, 143)" == str(color3)
+
 
 class TestNormalizedColor:
     def test_from_rgb_color(
