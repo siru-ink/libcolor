@@ -25,7 +25,7 @@ def normalized_color1() -> srgb.NormalizedColor:
 
 @pytest.fixture
 def normalized_color2() -> srgb.NormalizedColor:
-    return srgb.NormalizedColor(255.0, 255.0, 255.0)
+    return srgb.NormalizedColor(1.0, 1.0, 1.0)
 
 
 @pytest.fixture
@@ -75,6 +75,21 @@ class TestColor:
         assert not color1 >= color2
         assert color2 >= color1
         assert color2 >= color2
+
+
+class TestNormalizedColor:
+    def test_from_rgb_color(
+        self,
+        color1: srgb.Color,
+        color2: srgb.Color,
+        color3: srgb.Color,
+        normalized_color1: srgb.NormalizedColor,
+        normalized_color2: srgb.NormalizedColor,
+        normalized_color3: srgb.NormalizedColor,
+    ) -> None:
+        assert srgb.NormalizedColor.from_rgb_color(color1) == normalized_color1
+        assert srgb.NormalizedColor.from_rgb_color(color2) == normalized_color2
+        assert srgb.NormalizedColor.from_rgb_color(color3) == normalized_color3
 
 
 class TestLinearizedColor:
