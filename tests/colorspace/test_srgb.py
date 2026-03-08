@@ -113,6 +113,16 @@ class TestNormalizedColor:
         assert "rgb(1.000, 1.000, 1.000)" == str(normalized_color2)
         assert "rgb(0.561, 0.737, 0.561)" == str(normalized_color3)
 
+    def test_repr(
+        self,
+        normalized_color1: srgb.NormalizedColor,
+        normalized_color2: srgb.NormalizedColor,
+        normalized_color3: srgb.NormalizedColor,
+    ) -> None:
+        assert "srgb.NormalizedColor(0.000, 0.000, 0.000)" == repr(normalized_color1)
+        assert "srgb.NormalizedColor(1.000, 1.000, 1.000)" == repr(normalized_color2)
+        assert "srgb.NormalizedColor(0.561, 0.737, 0.561)" == repr(normalized_color3)
+
 
 class TestLinearizedColor:
     def test_from_rgb_color(

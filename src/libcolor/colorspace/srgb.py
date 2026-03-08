@@ -152,6 +152,11 @@ class NormalizedColor:
     def __str__(self) -> str:
         return f"rgb({self.red:.3f}, {self.green:.3f}, {self.blue:.3f})"
 
+    def __repr__(self) -> str:
+        return (
+            f"srgb.NormalizedColor({self.red:.3f}, {self.green:.3f}, {self.blue:.3f})"
+        )
+
     @classmethod
     def from_rgb_color(cls, color: Color) -> NormalizedColor:
         # Convert from standard rgb to normalized colors
