@@ -78,7 +78,7 @@ class TestColor:
 
 
 class TestLinearizedColor:
-    def test_from_standard_rgb_color(
+    def test_from_rgb_color(
         self,
         linearized_color1: srgb.LinearizedColor,
         linearized_color2: srgb.LinearizedColor,
@@ -87,6 +87,6 @@ class TestLinearizedColor:
         color2: srgb.Color,
         color3: srgb.Color,
     ) -> None:
-        assert linearized_color1 == srgb.LinearizedColor.from_standard_rgb_color(color1)
-        assert linearized_color2 == srgb.LinearizedColor.from_standard_rgb_color(color2)
-        assert linearized_color3 == srgb.LinearizedColor.from_standard_rgb_color(color3)
+        assert linearized_color1 == srgb.LinearizedColor.from_rgb_color(color1)
+        assert linearized_color2 == srgb.LinearizedColor.from_rgb_color(color2)
+        assert linearized_color3 == srgb.LinearizedColor.from_rgb_color(color3)

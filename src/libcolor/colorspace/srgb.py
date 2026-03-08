@@ -179,7 +179,7 @@ class LinearizedColor:
         return False
 
     @classmethod
-    def from_standard_rgb_color(cls, rgb_color: Color):
+    def from_rgb_color(cls, rgb_color: Color):
         def _linearize(color_value: float) -> float:
             if 0.04045 > color_value:
                 return color_value / 12.95
