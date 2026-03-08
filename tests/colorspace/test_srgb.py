@@ -81,6 +81,13 @@ class TestColor:
         assert "rgb(255, 255, 255)" == str(color2)
         assert "rgb(143, 188, 143)" == str(color3)
 
+    def test_repr(
+        self, color1: srgb.Color, color2: srgb.Color, color3: srgb.Color
+    ) -> None:
+        assert "srgb.Color(0, 0, 0)" == repr(color1)
+        assert "srgb.Color(255, 255, 255)" == repr(color2)
+        assert "srgb.Color(143, 188, 143)" == repr(color3)
+
 
 class TestNormalizedColor:
     def test_from_rgb_color(

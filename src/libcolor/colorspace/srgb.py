@@ -99,6 +99,9 @@ class Color:
     def __str__(self) -> str:
         return f"rgb({self.red}, {self.green}, {self.blue})"
 
+    def __repr__(self) -> str:
+        return f"srgb.Color({self.red}, {self.green}, {self.blue})"
+
     @classmethod
     def from_hex_str(cls, hexcode: str) -> Color:
         # Remove a leading # character
