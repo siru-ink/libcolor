@@ -149,6 +149,9 @@ class NormalizedColor:
         # If all channels are identical, then the colors are the same
         return equal_color_channel_values
 
+    def __str__(self) -> str:
+        return f"rgb({self.red:.3f}, {self.green:.3f}, {self.blue:.3f})"
+
     @classmethod
     def from_rgb_color(cls, color: Color) -> NormalizedColor:
         # Convert from standard rgb to normalized colors

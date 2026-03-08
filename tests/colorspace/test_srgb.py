@@ -103,6 +103,16 @@ class TestNormalizedColor:
         assert srgb.NormalizedColor.from_rgb_color(color2) == normalized_color2
         assert srgb.NormalizedColor.from_rgb_color(color3) == normalized_color3
 
+    def test_str(
+        self,
+        normalized_color1: srgb.NormalizedColor,
+        normalized_color2: srgb.NormalizedColor,
+        normalized_color3: srgb.NormalizedColor,
+    ) -> None:
+        assert "rgb(0.000, 0.000, 0.000)" == str(normalized_color1)
+        assert "rgb(1.000, 1.000, 1.000)" == str(normalized_color2)
+        assert "rgb(0.561, 0.737, 0.561)" == str(normalized_color3)
+
 
 class TestLinearizedColor:
     def test_from_rgb_color(
